@@ -1,0 +1,168 @@
+{
+  "info": {
+    "name": "UTEC S11 api-s3 - 5 funciones",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Edite baseUrl con la URL real de API Gateway. Crear bucket solo una vez."
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://REEMPLAZAR.execute-api.us-east-1.amazonaws.com/dev"
+    },
+    {
+      "key": "bucket",
+      "value": "renzoliang-s11-dev-REEMPLAZAR"
+    },
+    {
+      "key": "directorio",
+      "value": "evidencias"
+    }
+  ],
+  "item": [
+    {
+      "name": "Listar buckets",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/s3/lista-buckets",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "s3",
+            "lista-buckets"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Listar objetos",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/s3/bucket/lista-objetos",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "s3",
+            "bucket",
+            "lista-objetos"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"bucket\": \"{{bucket}}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Crear bucket",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/s3/bucket/crear",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "s3",
+            "bucket",
+            "crear"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"bucket\": \"{{bucket}}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Crear directorio",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/s3/bucket/crear-directorio",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "s3",
+            "bucket",
+            "crear-directorio"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"bucket\": \"{{bucket}}\",\n  \"directorio\": \"{{directorio}}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Subir archivo",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/s3/bucket/subir-archivo",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "s3",
+            "bucket",
+            "subir-archivo"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"bucket\": \"{{bucket}}\",\n  \"directorio\": \"{{directorio}}\",\n  \"archivo\": \"prueba.txt\",\n  \"contenido\": \"Archivo generado desde Postman en S11\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    }
+  ]
+}
